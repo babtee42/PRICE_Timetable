@@ -1,0 +1,31 @@
+{% extends "schedule/base.html" %}
+{% block title %}Weekly Timetable{% endblock %}
+
+{% block content %}
+  <div class="grid">
+    {% for day in by_day %}
+      <section class="day">
+        <h3>{{ day.label }}</h3>
+        {% if day.items %}
+          {% for a in day.items %}
+            <div class="card">
+              <div class="row">
+                <span class="tag" style="background: {{ a.color }};"></span>
+                <strong>{{ a.title }}</strong>
+              </div>
+              <div class="muted">{{ a.start_time }}–{{ a.end_time }} {% if a.location %} • {{ a.location }}{% endif %}</div>
+              <div class="muted">For: {{ a.who }}</div>
+              {% if a.notes %}<div style="margin-top:6px;">{{ a.notes }}</div>{% endif %}
+              <div class="row" style="margin-top:8px;gap:8px">
+                <a class="btn" href="{% url 'activity-edit' a.pk %}">Edit</a>
+                <a class="btn" href="{% url 'activity-delete' a.pk %}">Delete</a>
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="muted">— No activities —</div>
+        {% endif %}
+      </section>
+    {% endfor %}
+  </div>
+{% endblock %}

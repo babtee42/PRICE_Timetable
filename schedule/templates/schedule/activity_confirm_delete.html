@@ -1,0 +1,11 @@
+{% extends "schedule/base.html" %}
+{% block title %}Delete Activity{% endblock %}
+{% block content %}
+  <div class="card" style="max-width:560px;">
+    <p>Delete <strong>{{ object }}</strong>?</p>
+    <form method="post">{% csrf_token %}
+      <button type="submit">Confirm</button>
+      <a class="btn" href="{% url 'week' %}">Cancel</a>
+    </form>
+  </div>
+{% endblock %}
