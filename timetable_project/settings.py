@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-6nvz441s712(l$0=9mkybn0sh@ocy(hw9g5)cvz%_(-uwsd%k0
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False  # set True only locally
-
+# ALLOWED_HOSTS = []
 ALLOWED_HOSTS = os.getenv("Babatunde.pythonanywhere.com", "schedule.onrender.com").split(",")
 
 CSRF_TRUSTED_ORIGINS = os.getenv("https://Babatunde.pythonanywhere.com", "https://schedule.onrender.com").split(",")  # e.g. "https://yourname.pythonanywhere.com, https://yourapp.onrender.com".split(",")
