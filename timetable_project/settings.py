@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +23,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-6nvz441s712(l$0=9mkybn0sh@ocy(hw9g5)cvz%_(-uwsd%k0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False  # set True only locally
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("Babatunde.pythonanywhere.com", "schedule.onrender.com").split(",")
+
+CSRF_TRUSTED_ORIGINS = os.getenv("https://Babatunde.pythonanywhere.com", "https://schedule.onrender.com").split(",")  # e.g. "https://yourname.pythonanywhere.com, https://yourapp.onrender.com".split(",")
+
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 # Application definition
@@ -48,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = 'timetable_project.urls'
@@ -115,7 +121,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# # STATIC_URL = 'static/'
+
+# ALLOWED_HOSTS = ['<yourusername>.pythonanywhere.com']
+# STATIC_URL = '/static/'
+# from pathlib import Path
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
